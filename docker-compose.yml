@@ -1,0 +1,15 @@
+services:
+  socket-server:
+    build: .
+    container_name: sandbox-socket
+    networks:
+      - sandbox-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.sandbox-socket.rule=Host(`socket.sandbox.traefik.me`)"
+      - "traefik.http.routers.sandbox-socket.entrypoints=web"
+      - "traefik.http.services.sandbox-socket.loadbalancer.server.port=3000"
+
+networks:
+  sandbox-network:
+    external: true

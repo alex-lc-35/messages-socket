@@ -1,0 +1,26 @@
+# Fichiers et dossiers spécifiques à PHP
+/vendor/
+/composer.lock
+
+# Cache et logs
+*.log
+*.cache
+.phpunit.result.cache
+
+# Dossiers communs
+/node_modules/
+/.env
+.env.local
+.env.*.local
+
+# Fichiers Docker éventuels
+docker-compose.override.yml
+.docker/
+
+# PhpStorm
+.idea/
+*.iml
+
+# Autres fichiers système
+.DS_Store
+Thumbs.db
