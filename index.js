@@ -27,7 +27,7 @@ app.post("/api/send", (req, res) => {
 
 io.on("connection", (socket) => {
     console.log(`${new Date().toISOString()}🟢 Nouveau client connecté`);
-z
+
     socket.on("chat message", (msg) => {
         console.log(`${new Date().toISOString()}💬 Message reçu :`, msg);
         io.emit("chat message", msg);
