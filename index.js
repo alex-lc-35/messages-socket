@@ -5,6 +5,7 @@ const server = http.createServer(app);
 
 const { Server } = require("socket.io");
 const io = new Server(server, {
+    path: "/socket/socket.io",
     cors: {
         origin: "*"
     }
@@ -12,15 +13,15 @@ const io = new Server(server, {
 
 app.use(express.json());
 
-app.get("/", (req, res) => {
+app.get("/socket", (req, res) => {
     res.send("✅ Hello depuis sandbox-socket via Traefik !");
     console.log("Hello depuis sandbox-socket via Traefik ");
 });
 
 
-app.post("/api/send", (req, res) => {
+app.post("/socket/send", (req, res) => {
     const msg = req.body;
-    console.log(`${new Date().toISOString()} 📨 Reçu de projet-4 :`, msg);
+    console.log(`${new Date().toISOString()} 📨 Reçu de messages-api :`, msg);
     io.emit("chat message", msg);
     res.json({ status: "ok", received: msg });
 });

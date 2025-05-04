@@ -1,14 +1,15 @@
 services:
-  socket-server:
+  messages-socket:
     build: .
-    container_name: sandbox-socket
+    container_name: messages-socket
     networks:
       - sandbox-network
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.sandbox-socket.rule=Host(`socket.sandbox.traefik.me`)"
-      - "traefik.http.routers.sandbox-socket.entrypoints=web"
-      - "traefik.http.services.sandbox-socket.loadbalancer.server.port=3000"
+      - "traefik.http.routers.messages-socket.rule=Host(`messages.me`) && PathPrefix(`/socket`)"
+      - "traefik.http.routers.messages-socket.entrypoints=web"
+      - "traefik.http.routers.messages-socket.middlewares=websocket-headers@file"
+      - "traefik.http.services.messages-socket.loadbalancer.server.port=3000"
 
 networks:
   sandbox-network:
