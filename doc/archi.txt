@@ -1,0 +1,12 @@
+messages-socket/
+├── _docker/
+│   ├── docker-compose.yml         # Local = volume = dev rapide
+│   ├── docker-compose.prod.yml    # Prod = image figée
+│   ├── Dockerfile.prod            # Image Node optimisée
+│   └── helper.sh                  # Commandes unifiées (up, refresh, etc.)
+├── src/
+│   └── index.js
+├── .env
+├── .gitignore
+├── package.json
+└── package-lock.json

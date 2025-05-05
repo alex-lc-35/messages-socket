@@ -1,0 +1,23 @@
+services:
+  messages-socket:
+    image: node:18-alpine
+    container_name: messages-socket
+    working_dir: /app
+    command: node src/index.js
+    volumes:
+      - ../src:/app/src
+      - ../package.json:/app/package.json
+      - ../package-lock.json:/app/package-lock.json
+      - ../node_modules:/app/node_modules
+    networks:
+      - sandbox-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.messages-socket.rule=Host(`messages.rfess.fr`) && PathPrefix(`/socket`)"
+      - "traefik.http.routers.messages-socket.entrypoints=web"
+      - "traefik.http.routers.messages-socket.middlewares=websocket-headers@file"
+      - "traefik.http.services.messages-socket.loadbalancer.server.port=3000"
+
+networks:
+  sandbox-network:
+    external: true

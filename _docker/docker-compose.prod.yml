@@ -1,7 +1,11 @@
 services:
   messages-socket:
-    build: .
     container_name: messages-socket
+    image: messages-socket-image:prod
+    build:
+      context: ..
+      dockerfile: _docker/Dockerfile.prod
+    user: "${UID}:${GID}"
     networks:
       - sandbox-network
     labels:
