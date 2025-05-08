@@ -72,7 +72,7 @@ case "$COMMAND" in
     echo "🔄 Redémarrage (développement)"
     docker compose -f "$DOCKER_COMPOSE_FILE" restart
     ;;
-  logs-socket)
+  logs)
     echo "📜 Logs du conteneur messages-socket"
     docker logs -f messages-socket
     ;;
